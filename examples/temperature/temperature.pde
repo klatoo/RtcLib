@@ -18,6 +18,6 @@ void loop ()
 {
     rtc.convertTemperature();             // convert current temperature into registers
     Serial.print(rtc.getTemperature());   // read registers and display the temperature
-    Serial.println("deg C");
+    Serial.println(" °C");
     delay(1000);
 }
