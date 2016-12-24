@@ -36,7 +36,7 @@ void loop ()
 	Serial.print('/');
 	Serial.print(now.month(), DEC);
 	Serial.print('/');
-	Serial.print(now.date(), DEC);
+	Serial.print(now.day(), DEC);
 	Serial.print(' ');
 	Serial.print(now.hour(), DEC);
 	Serial.print(':');
@@ -47,7 +47,7 @@ void loop ()
 	Serial.print(weekDay[now.dayOfWeek()]);
 	Serial.println();
 	Serial.print("Seconds since Unix Epoch: "); 
-	Serial.print(ts, DEC);
+	Serial.print(time, DEC);
 	Serial.println();
     }
     delay(1000);

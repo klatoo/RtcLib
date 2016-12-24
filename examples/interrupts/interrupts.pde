@@ -1,8 +1,16 @@
+// interrupts.pde
+// last edit 24.Dec.2016  /klatoo  - forked from interrupts.pde from SodaqMoja
+//
+// Using interrupts with the DS3231 class
+// Please make sure:
+
+#include "RtcLibHelper.h"
+#include "DS3231.h"
+#include <avr/sleep.h>
+
 //Interrupts for Battery management/saving using MCU power down mode. /INT from DS3231 is connected to INT0 of MCU.
 
-#include <avr/sleep.h>
-#include <Wire.h>
-#include "Sodaq_DS3231.h"
+
 
 static uint8_t prevSecond=0; 
 
@@ -13,8 +21,7 @@ void setup ()
      DDRD &=~ 0x04;
   
      Serial.begin(57600);
-     Wire.begin();
-    
+        
      rtc.begin();
      attachInterrupt(0, INT0_ISR, FALLING); 
      

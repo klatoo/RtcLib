@@ -1,9 +1,11 @@
-// Date and time functions using a RX8025 RTC connected via I2C and Wire lib
+// adjust.pde
+// last edit 24.Dec.2016  /klatoo  - forked from adjust.pde from SodaqMoja
+//
+// Date and time functions using the RtcLib
+// 
 
-#include <Wire.h>
-#include "Sodaq_DS3231.h"
-
-char weekDay[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+#include "RtcLibHelper.h"
+#include "DS3231.h"
 
 //year, month, date, hour, min, sec and week-day(starts from 0 and goes to 6)
 //writing any non-existent time-data may interfere with normal operation of the RTC.
@@ -14,7 +16,6 @@ DateTime dt(2011, 11, 10, 15, 18, 0, 5);
 void setup () 
 {
     Serial.begin(57600);
-    Wire.begin();
     rtc.begin();
     rtc.setDateTime(dt); //Adjust date-time as defined 'dt' above 
 }
