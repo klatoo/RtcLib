@@ -18,7 +18,7 @@ void loop ()
 {
     rtc.convertTemperature();             // convert current temperature into registers
     Serial.print("current Temp is ");
-	Serial.print(rtc.getTemperature());   // read registers and display the temperature
+    Serial.print(rtc.getTemperature());   // read registers and display the temperature
     Serial.println("°C");
     delay(1000);
 }
