@@ -15,6 +15,7 @@
 #define DS3231_H
 
 #include <Arduino.h>
+#include "RtcLibHelper.h"
 //#include <stdint.h>
 
 

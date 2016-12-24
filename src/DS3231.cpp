@@ -11,10 +11,12 @@
 // http://jeelabs.net/projects/cafe/wiki/RTClib 
 // Released under MIT License http://opensource.org/licenses/mit-license.php
 
-//#include <Wire.h>
-//#include <avr/pgmspace.h>
 
 #include "DS3231.h"
+#include <Wire.h>
+//#include <avr/pgmspace.h>
+
+
 
 
 #define EPOCH_TIME_OFF 946684800  // This is 2000-jan-01 00:00:00 in epoch time
