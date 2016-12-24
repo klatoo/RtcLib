@@ -62,14 +62,14 @@ protected:
 };
 
 
-class TimerClock
+class TimerClock24h
 {
 private:
 	DateTime _dtStart, _dtEnd;
-	enum bla { bla1, bla2, bla3 };
+	
 
 public:
-	TimerClock();
+	TimerClock24h();
 	void setup(DateTime dtStart, DateTime dtEnd);
 	bool IsOn(DateTime dtNow);
 

@@ -10,6 +10,10 @@
 #include "RtcLibHelper.h"
 #include <avr/pgmspace.h>
 
+#define SECONDS_PER_DAY 86400L
+#define SECONDS_FROM_1970_TO_2000 946684800
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // utility code, some of this could be exposed in the DateTime API if needed
 
@@ -196,7 +200,7 @@ TimeSpan TimeSpan::operator-(const TimeSpan& right) {
 
 
 
-ZeitSchaltWerk24h::ZeitSchaltWerk24h()
+TimerClock24h::TimerClock24h()
 {
 	// set to a default time to avoid any issues if setup() was not called
 
@@ -204,14 +208,14 @@ ZeitSchaltWerk24h::ZeitSchaltWerk24h()
 	_dtEnd = DateTime(0, 0, 0, 20, 0, 0);
 }
 
-void ZeitSchaltWerk24h::setup(DateTime dtStart, DateTime dtEnd)
+void TimerClock24h::setup(DateTime dtStart, DateTime dtEnd)
 {
 	_dtStart = dtStart;
 	_dtEnd = dtEnd;
 }
 
 
-bool ZeitSchaltWerk24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNow)
+bool TimerClock24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNow)
 {
 	if (dtNow.secondstime() >= dtStart.secondstime())
 	{
@@ -223,7 +227,7 @@ bool ZeitSchaltWerk24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime 
 	return false;
 }
 
-bool ZeitSchaltWerk24h::IsOn(DateTime dtNow)
+bool TimerClock24h::IsOn(DateTime dtNow)
 {
 	// if end is next day, i.e. crosses 24:00 hrs mark
 	if (_dtStart.hour() > _dtEnd.hour())
