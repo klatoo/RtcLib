@@ -107,7 +107,7 @@ void DS3231::setDateTime(const DateTime& dt) {
   Wire.write((byte)bin2bcd(dt.minute()));
   Wire.write((byte)bin2bcd((dt.hour()) & 0b10111111)); //Make sure clock is still 24 Hour
   Wire.write((byte)dt.dayOfWeek());
-  Wire.write((byte)bin2bcd(dt.date()));
+  Wire.write((byte)bin2bcd(dt.day()));
   Wire.write((byte)bin2bcd(dt.month()));
   Wire.write((byte)bin2bcd(dt.year() - 2000));  
   Wire.endTransmission();
@@ -145,7 +145,7 @@ DateTime DS3231::now() {
   uint8_t m = bcd2bin(Wire.read());
   uint16_t y = bcd2bin(Wire.read()) + 2000;
   
-  return DateTime (y, m, d, hh, mm, ss, wd);
+  return DateTime (y, m, d, hh, mm, ss);
 }
 
 //Enable periodic interrupt at /INT pin. Supports only the level interrupt
