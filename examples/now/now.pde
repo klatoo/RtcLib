@@ -44,7 +44,7 @@ void loop ()
 	Serial.print(':');
 	Serial.print(now.second(), DEC);
 	Serial.print(' ');
-	Serial.print(weekDay[now.dayOfTheWeek()]);
+	Serial.print(weekDay[now.dayOfWeek()]);
 	Serial.println();
 	Serial.print("Seconds since Unix Epoch: "); 
 	Serial.print(time, DEC);
