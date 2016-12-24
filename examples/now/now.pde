@@ -1,14 +1,24 @@
+// now.pde
+// last edit 24.Dec.2016  /klatoo  - forked from now.pde from SodaqMoja
+//
+// Using DateTime from RtcLib to send current date and time via serial interface
+// 
+
+#include "RtcLibHelper.h"
+#include "DS3231.h"
+
+
 // Date and time functions using RX8025 RTC connected via I2C and Wire lib
 
-#include <Wire.h>
-#include "Sodaq_DS3231.h"
+//#include <Wire.h>
+#include "DS3231.h"
 
 char weekDay[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
 void setup () 
 {
     Serial.begin(57600);
-    Wire.begin();
+    //Wire.begin();
     rtc.begin();
 }
 
