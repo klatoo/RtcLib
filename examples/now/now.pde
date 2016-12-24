@@ -11,7 +11,7 @@
 // Date and time functions using RX8025 RTC connected via I2C and Wire lib
 
 //#include <Wire.h>
-#include "DS3231.h"
+
 
 char weekDay[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
@@ -22,15 +22,16 @@ void setup ()
     rtc.begin();
 }
 
-uint32_t old_ts;
+long oldTime;
 
 void loop () 
 {
     DateTime now = rtc.now(); //get the current date-time
-    uint32_t ts = now.getEpoch();
+    long time = now.secondstime();
 
-    if (old_ts == 0 || old_ts != ts) {
-	old_ts = ts;
+    if (oldTime == 0 || oldTime != time) {
+	oldTime = time;
+
 	Serial.print(now.year(), DEC);
 	Serial.print('/');
 	Serial.print(now.month(), DEC);
