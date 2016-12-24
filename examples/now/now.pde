@@ -30,7 +30,7 @@ void loop ()
 		oldTime = time;
 
 		Serial.print(weekDay[now.dayOfWeek()]);
-
+		Serial.print(' ');
 		Serial.print(now.day(), DEC);
 		Serial.print('.');
 		Serial.print(now.month(), DEC);
