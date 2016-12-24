@@ -46,9 +46,13 @@ public:
 
     void convertTemperature();
     float getTemperature();
+
 private:
     uint8_t readRegister(uint8_t regaddress);
     void writeRegister(uint8_t regaddress, uint8_t value);
+	static uint8_t bcd2bin(uint8_t val);
+	static uint8_t bin2bcd(uint8_t val); 
+
 };
 
 extern DS3231 rtc;

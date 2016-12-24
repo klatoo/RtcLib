@@ -48,6 +48,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 // RTC DS3231 implementation
 
+static uint8_t DS3231::bcd2bin(uint8_t val) 
+{ 
+	return val - 6 * (val >> 4); 
+}
+
+static uint8_t DS3231::bin2bcd(uint8_t val) 
+{ 
+	return val + 6 * (val / 10); 
+}
+
+
 uint8_t DS3231::readRegister(uint8_t regaddress)
 {
     Wire.beginTransmission(DS3231_ADDRESS);
