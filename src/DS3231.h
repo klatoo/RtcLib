@@ -1,7 +1,7 @@
 // DS3231.h
 //
 // last edit 24.Dec.2016 /klatoo  - created
-//
+//           25.Dec.2016 /klatto  - moved some defines to const and enum
 
 // DS3231 - class to support DS3231 real time clock e.g. from
 // DS3231 class is a modified version of Sodaq_DS3231 Class, 
@@ -16,13 +16,6 @@
 
 #include <Arduino.h>
 #include "RtcLibHelper.h"
-//#include <stdint.h>
-
-
-
-#define 
-#define 
-#define 
 
 
 // RTC DS3231 chip connected via I2C and uses the Wire library.
@@ -30,7 +23,7 @@
 class DS3231 {
 public:
 	enum periodicity: uint8_t  { EverySecond=0x01, EveryMinute=0x02, EveryHour=0x03}; // used for periodicity of enableInterrupts() below.
-	unsigned long EPOCH_TIME_OFF = 946684800;   // This is 2000-jan-01 00:00:00 in epoch time
+	const unsigned long EPOCH_TIME_OFF = 946684800;   // This is 2000-jan-01 00:00:00 in epoch time
     uint8_t begin(void);
 
     void setDateTime(const DateTime& dt);  //Changes the date-time
