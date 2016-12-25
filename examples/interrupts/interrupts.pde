@@ -10,6 +10,7 @@
 #include "DS3231.h"
 #include <avr/sleep.h>
 
+char weekDay[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 long oldTime;
 
 void setup () 
@@ -24,7 +25,7 @@ void setup ()
      attachInterrupt(digitalPinToInterrupt(2), timerISR, FALLING);   // check if pin is available on your board 
      
      //Enable Interrupt 
-     rtc.enableInterrupts(rtc.periodicity.EveryMinute); //interrupt at  EverySecond, EveryMinute, EveryHour
+     rtc.enableInterrupts(DS3231::Periodicity::EveryMinute); //interrupt at  EverySecond, EveryMinute, EveryHour
      
 	 // or this
      //rtc.enableInterrupts(18,4,0);    // interrupt at (h,m,s)
