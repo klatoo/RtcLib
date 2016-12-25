@@ -21,10 +21,10 @@ void setup ()
      Serial.begin(57600);
         
      rtc.begin();
-     attachInterrupt(digitalPinToInterrupt(2), timerIsr, FALLING);   // check if pin is available on your board 
+     attachInterrupt(digitalPinToInterrupt(2), timerISR, FALLING);   // check if pin is available on your board 
      
      //Enable Interrupt 
-     rtc.enableInterrupts(EveryMinute); //interrupt at  EverySecond, EveryMinute, EveryHour
+     rtc.enableInterrupts(rtc.periodicity.EveryMinute); //interrupt at  EverySecond, EveryMinute, EveryHour
      
 	 // or this
      //rtc.enableInterrupts(18,4,0);    // interrupt at (h,m,s)
