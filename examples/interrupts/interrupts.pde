@@ -1,33 +1,32 @@
 // interrupts.pde
-// last edit 24.Dec.2016  /klatoo  - forked from interrupts.pde from SodaqMoja
+// last edit 25.Dec.2016  /klatoo  - forked from interrupts.pde from SodaqMoja
 //
 // Using interrupts with the DS3231 class
-// Please make sure:
+//
+// Please make sure that you connected pin 2 (INT0) of Arduino Uno to SQW pin of DS3231
+// otherwise you will not be able to see the interrupt
 
 #include "RtcLibHelper.h"
 #include "DS3231.h"
 #include <avr/sleep.h>
 
-//Interrupts for Battery management/saving using MCU power down mode. /INT from DS3231 is connected to INT0 of MCU.
-
-
-
-static uint8_t prevSecond=0; 
+long oldTime;
 
 void setup () 
 {
-     /*Initialize INT0 for accepting interrupts */
+     // Initialize INT0 for accepting interrupts 
      PORTD |= 0x04; 
      DDRD &=~ 0x04;
   
      Serial.begin(57600);
         
      rtc.begin();
-     attachInterrupt(0, INT0_ISR, FALLING); 
+     attachInterrupt(digitalPinToInterrupt(2), timerIsr, FALLING);   // check if pin is available on your board 
      
      //Enable Interrupt 
      rtc.enableInterrupts(EveryMinute); //interrupt at  EverySecond, EveryMinute, EveryHour
-     // or this
+     
+	 // or this
      //rtc.enableInterrupts(18,4,0);    // interrupt at (h,m,s)
 }
 
@@ -35,31 +34,41 @@ void setup ()
 void loop () 
 {
 
-    DateTime now = rtc.now(); //get the current date-time    
-    if((now.second()) !=  prevSecond )
-    {
-    //print only when there is a change in seconds
-    Serial.print(now.year(), DEC);
-    Serial.print('/');
-    Serial.print(now.month(), DEC);
-    Serial.print('/');
-    Serial.print(now.date(), DEC);
-    Serial.print(' ');
-    Serial.print(now.hour(), DEC);
-    Serial.print(':');
-    Serial.print(now.minute(), DEC);
-    Serial.print(':');
-    Serial.print(now.second(), DEC);
-    Serial.println(' ');
+    DateTime now = rtc.now();   // get the current date-time
+    long time = now.secondstime();
+
+    if (oldTime == 0 || oldTime != time) 
+	{
+		oldTime = time;
+
+		Serial.print(weekDay[now.dayOfWeek()]);
+		Serial.print(' ');
+		Serial.print(now.day(), DEC);
+		Serial.print('.');
+		Serial.print(now.month(), DEC);
+		Serial.print('.');
+		Serial.print(now.year(), DEC);
+		
+		Serial.print("    ");
+		
+		Serial.print(now.hour(), DEC);
+		Serial.print(':');
+		Serial.print(now.minute(), DEC);
+		Serial.print(':');
+		Serial.println(now.second(), DEC);
+				
+		Serial.print("unix-time: "); 
+		Serial.print(now.unixtime());
+		Serial.println();
+		Serial.println();
     }
-    prevSecond = now.second();
     rtc.clearINTStatus();
  
 } 
 
   
 //Interrupt service routine for external interrupt on INT0 pin conntected to /INT
-void INT0_ISR()
+void timerISR()
 {
   //Keep this as short as possible. Possibly avoid using function calls
   
