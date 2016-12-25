@@ -1,6 +1,17 @@
-# Sodaq_DS3231
+# RtcLib
 
 This is an Arduino library for the DS3231 RTC (Real Time Clock).
+The DS32331 class is forked from Sodaq_DS3231
+DateTime and TimeSpan are derived from the adafruit/RTClib
+and TimerClock24h was added by me
+
+## Main goal
+Provide simple RTC functionality for a timer clock 
+
+## Version history
+24./25.Dec.16	Created, splitted the files into RTC class and helper classes,
+				Updated the samples
+
 
 # Old README
 
