@@ -13,7 +13,7 @@ Provide simple RTC functionality for a timer clock
 				Updated the samples
 
 
-# Old README
+## Old README
 
 RDS3231 Class is by Seeed Technology Inc(http://www.seeedstudio.com) and used
 in Seeeduino Stalker v2.1 for battery management(MCU power saving mode)
