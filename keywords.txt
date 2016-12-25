@@ -1,26 +1,40 @@
 #######################################
-# Syntax Coloring Map for NewSoftSerial
+# Syntax Coloring Map for RtcLib
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-Sodaq_DS3231	KEYWORD1
+DS3231	KEYWORD1
 DateTime	KEYWORD1
+TimeSpan	KEYWORD1
+TimerClock24h	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
+days	KEYWORD2
+hours	KEYWORD2
+minutes	KEYWORD2
+seconds	KEYWORD2
+totalseconds	KEYWORD2
+########################################
 second	KEYWORD2
 minute	KEYWORD2
 hour	KEYWORD2
-date	KEYWORD2
+day		KEYWORD2
 month	KEYWORD2
 year	KEYWORD2
-active	KEYWORD2
 dayOfWeek	KEYWORD2
+secondstime	KEYWORD2
+unixtime	KEYWORD2
+########################################
+setup	KEYWORD2
+IsOn	KEYWORD2
+########################################
+active	KEYWORD2
 get	KEYWORD2
 begin	KEYWORD2
 setDateTime	KEYWORD2
