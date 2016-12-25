@@ -34,7 +34,7 @@ public:
 
     //Decides the /INT pin's output setting
     //periodicity can be any of following defines: EverySecond, EveryMinute, EveryHour 
-    void enableInterrupts(periodicity period);
+    void enableInterrupts(Periodicity period);
     void enableInterrupts(uint8_t hh24, uint8_t mm,uint8_t ss);
     void disableInterrupts();
     void clearINTStatus();
