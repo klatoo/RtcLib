@@ -19,16 +19,18 @@
 //#include <stdint.h>
 
 
-// These are the constants for periodicity of enableInterrupts() below.
-#define EverySecond     0x01
-#define EveryMinute     0x02
-#define EveryHour       0x03
+
+#define 
+#define 
+#define 
 
 
 // RTC DS3231 chip connected via I2C and uses the Wire library.
 // Only 24 Hour time format is supported in this implementation
 class DS3231 {
 public:
+	enum periodicity: uint8_t  { EverySecond=0x01, EveryMinute=0x02, EveryHour=0x03}; // used for periodicity of enableInterrupts() below.
+	unsigned long EPOCH_TIME_OFF = 946684800;   // This is 2000-jan-01 00:00:00 in epoch time
     uint8_t begin(void);
 
     void setDateTime(const DateTime& dt);  //Changes the date-time
@@ -39,7 +41,7 @@ public:
 
     //Decides the /INT pin's output setting
     //periodicity can be any of following defines: EverySecond, EveryMinute, EveryHour 
-    void enableInterrupts(uint8_t periodicity);
+    void enableInterrupts(periodicity period);
     void enableInterrupts(uint8_t hh24, uint8_t mm,uint8_t ss);
     void disableInterrupts();
     void clearINTStatus();

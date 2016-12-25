@@ -12,12 +12,7 @@
 
 #include "DS3231.h"
 #include <Wire.h>
-//#include <avr/pgmspace.h>
 
-
-
-#define EPOCH_TIME_OFF 946684800  // This is 2000-jan-01 00:00:00 in epoch time
-#define SECONDS_PER_DAY 86400L
 
 #define DS3231_ADDRESS	      0x68 //I2C Slave address
 
@@ -151,14 +146,14 @@ DateTime DS3231::now() {
 //Enable periodic interrupt at /INT pin. Supports only the level interrupt
 //for consistency with other /INT interrupts. All interrupts works like single-shot counter
 //Use refreshINTA() to re-enable interrupt.
-void DS3231::enableInterrupts(uint8_t periodicity)
+void DS3231::enableInterrupts(periodicity period)
 {
 
     unsigned char ctReg=0;
     ctReg |= 0b00011101; 
     writeRegister(DS3231_CONTROL_REG, ctReg);     //CONTROL Register Address
     
-   switch(periodicity) 
+   switch(period) 
    {
        case EverySecond:
        writeRegister(DS3231_AL1SEC_REG,  0b10000000 ); //set AM1
