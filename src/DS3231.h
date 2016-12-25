@@ -22,7 +22,7 @@
 // Only 24 Hour time format is supported in this implementation
 class DS3231 {
 public:
-	enum periodicity: uint8_t  { EverySecond=0x01, EveryMinute=0x02, EveryHour=0x03}; // used for periodicity of enableInterrupts() below.
+	enum class Periodicity: uint8_t  { EverySecond=0x01, EveryMinute=0x02, EveryHour=0x03}; // used for periodicity of enableInterrupts() below.
 	const unsigned long EPOCH_TIME_OFF = 946684800;   // This is 2000-jan-01 00:00:00 in epoch time
     uint8_t begin(void);
 

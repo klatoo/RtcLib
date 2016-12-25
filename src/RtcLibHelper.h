@@ -15,7 +15,7 @@
 // Timespan which can represent changes in time with seconds accuracy.
 class TimeSpan {
 public:
-	const long SECONDS_FROM_1970_TO_2000 946684800;
+	const long SECONDS_FROM_1970_TO_2000 = 946684800;
 	const long SECONDS_PER_DAY = 86400;
 	const int SECONDS_PER_HOUR = 3600;
 	const int SECONDS_PER_MINUTE = 60;

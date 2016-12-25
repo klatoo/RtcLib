@@ -146,7 +146,7 @@ DateTime DS3231::now() {
 //Enable periodic interrupt at /INT pin. Supports only the level interrupt
 //for consistency with other /INT interrupts. All interrupts works like single-shot counter
 //Use refreshINTA() to re-enable interrupt.
-void DS3231::enableInterrupts(periodicity period)
+void DS3231::enableInterrupts(Periodicity period)
 {
 
     unsigned char ctReg=0;
