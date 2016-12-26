@@ -1,5 +1,5 @@
 // interrupts.pde
-// last edit 25.Dec.2016  /klatoo  - forked from interrupts.pde from SodaqMoja
+// last edit 26.Dec.2016  /klatoo  - forked from interrupts.pde from SodaqMoja
 //
 // Using interrupts with the DS3231 class
 //
@@ -8,14 +8,13 @@
 
 #include "RtcLibHelper.h"
 #include "DS3231.h"
-#include <avr/sleep.h>
 
 char weekDay[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 long oldTime;
 
 void setup () 
 {
-     // Initialize INT0 for accepting interrupts 
+     // Initialize INT0 for accepting interrupts, check if pin is available on your board 
      PORTD |= 0x04; 
      DDRD &=~ 0x04;
   
@@ -73,5 +72,5 @@ void timerISR()
 {
   //Keep this as short as possible. Possibly avoid using function calls
   
-   Serial.println(" External Interrupt detected ");
+   Serial.println("*** External Interrupt detected ***");
 }
