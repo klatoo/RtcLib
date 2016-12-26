@@ -1,7 +1,7 @@
 // DS3231.cpp
 //
 // last edit 24.Dec.2016 /klatoo  - created
-//
+//           26.Dec.2016 /klatoo  - made some defines to constants and enums
 
 // 
 // Class DS3231 is derived from Sodaq_DS3231 Class, that is a modified version of
@@ -155,7 +155,7 @@ void DS3231::enableInterrupts(Periodicity period)
     
    switch(period) 
    {
-       case EverySecond:
+       case Periodicity::EverySecond:
        writeRegister(DS3231_AL1SEC_REG,  0b10000000 ); //set AM1
        writeRegister(DS3231_AL1MIN_REG,  0b10000000 ); //set AM2
        writeRegister(DS3231_AL1HOUR_REG, 0b10000000 ); //set AM3
@@ -163,7 +163,7 @@ void DS3231::enableInterrupts(Periodicity period)
 
        break;
 
-       case EveryMinute:
+       case Periodicity::EveryMinute:
        writeRegister(DS3231_AL1SEC_REG,  0b00000000 ); //Clr AM1
        writeRegister(DS3231_AL1MIN_REG,  0b10000000 ); //set AM2
        writeRegister(DS3231_AL1HOUR_REG, 0b10000000 ); //set AM3
@@ -171,7 +171,7 @@ void DS3231::enableInterrupts(Periodicity period)
 
        break;
 
-       case EveryHour:
+       case Periodicity::EveryHour:
        writeRegister(DS3231_AL1SEC_REG,  0b00000000 ); //Clr AM1
        writeRegister(DS3231_AL1MIN_REG,  0b00000000 ); //Clr AM2
        writeRegister(DS3231_AL1HOUR_REG, 0b10000000 ); //Set AM3
