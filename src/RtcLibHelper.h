@@ -1,6 +1,7 @@
 // RtcLibHelper.h
 // 
 // last edit 24.Dec.2016 /klatoo  - created
+//           26.Dec.2016 /klatoo  - moved some #defines to TimeSpan::xx  static const
 
 // helper classes fro the RTC lib:
 // DateTime, TimeSpan, TimerClock
@@ -15,12 +16,12 @@
 // Timespan which can represent changes in time with seconds accuracy.
 class TimeSpan {
 public:
-	const long SECONDS_FROM_1970_TO_2000 = 946684800;
-	const long SECONDS_PER_DAY = 86400;
-	const int SECONDS_PER_HOUR = 3600;
-	const int SECONDS_PER_MINUTE = 60;
-	const int MINUTES_PER_HOUR = 60;
-	const int HOURS_PER_DAY = 24;
+	static const long SECONDS_FROM_1970_TO_2000 = 946684800;
+	static const long SECONDS_PER_DAY = 86400;
+	static const int SECONDS_PER_HOUR = 3600;
+	static const int SECONDS_PER_MINUTE = 60;
+	static const int MINUTES_PER_HOUR = 60;
+	static const int HOURS_PER_DAY = 24;
 
 	TimeSpan(int32_t seconds = 0);
 	TimeSpan(int16_t days, int8_t hours, int8_t minutes, int8_t seconds);
