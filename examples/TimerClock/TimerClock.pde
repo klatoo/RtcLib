@@ -10,7 +10,7 @@
 
 char weekDay[][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 long oldTime;
-TimerClock24 timerClock;
+TimerClock24h timerClock;
 
 
 void setup () 
@@ -48,7 +48,7 @@ void loop ()
 				
 		Serial.print("unix-time: "); 
 		Serial.print(now.unixtime());
-		if(timerClock.IsOn())
+		if(timerClock.IsOn(now))
 		   Serial.print("******* ON *******");
         else
 		   Serial.print("------- OFF -------");

@@ -219,7 +219,6 @@ void TimerClock24h::setup(uint8_t startHour, uint8_t startMin, uint8_t startSec,
 	_dtEnd = DateTime(0, 0, 0, endHour, endMin, endSec);
 }
 
-void 
 
 bool TimerClock24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNow)
 {
