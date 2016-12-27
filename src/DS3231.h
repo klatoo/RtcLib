@@ -2,6 +2,7 @@
 //
 // last edit 24.Dec.2016 /klatoo  - created
 //           25.Dec.2016 /klatto  - moved some defines to const and enum
+//           27.Dec.2016 /klatoo  - added additional TimerClock24::setup variant
 
 // DS3231 - class to support DS3231 real time clock e.g. from
 // DS3231 class is a modified version of Sodaq_DS3231 Class, 

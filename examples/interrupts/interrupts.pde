@@ -14,7 +14,7 @@ long oldTime;
 
 void setup () 
 {
-      // Initialize INT0 for accepting interrupts, check if pin is available on your board 
+     // Initialize INT0 for accepting interrupts, check if pin is available on your board 
      PORTD |= 0x04; 
      DDRD &=~ 0x04;
   
@@ -23,11 +23,11 @@ void setup ()
      rtc.begin();
      attachInterrupt(digitalPinToInterrupt(2), timerISR, FALLING);   // check if pin is available on your board 
      
-     //Enable Interrupt 
-     //rtc.enableInterrupts(DS3231::Periodicity::EveryMinute); //interrupt at  EverySecond, EveryMinute, EveryHour
+     // Enable periodic interrupt (possible values are: DS3231::Periodicity::EverySecond, EveryMinute, EveryHour)
+     rtc.enableInterrupts(DS3231::Periodicity::EveryMinute); 
      
-	 // it is also possible to fire an interrupt on a certain time, e.g. for an alarm clock
-     rtc.enableInterrupts(14,35,0);    // interrupt at (h,m,s)
+     // it is also possible to fire an interrupt on a certain time, e.g. for an alarm clock
+     //rtc.enableInterrupts(14,35,0);    // interrupt at (h,m,s)
 }
 
 

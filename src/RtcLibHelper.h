@@ -78,6 +78,7 @@ private:
 
 public:
 	TimerClock24h();
+	void setup(uint8_t startHour, uint8_t startMin, uint8_t startSec, int8_t endHour, uint8_t endMin, uint8_t endSec);
 	void setup(DateTime dtStart, DateTime dtEnd);
 	bool IsOn(DateTime dtNow);
 

@@ -8,9 +8,13 @@ and TimerClock24h was added by me
 ## Main goal
 Provide simple RTC functionality for a timer clock 
 
+## Datasheet for D3231
+The datasheet can e.g. found here: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+
 ## Version history
 24./25.Dec.16	Created, splitted the files into RTC class and helper classes,
 				Updated the samples
+27.Dec.16       Added sample for TimerClock24h
 
 
 ## Old README

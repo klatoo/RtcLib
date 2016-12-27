@@ -1,6 +1,7 @@
 // RtcLibHelper.cpp
 //
 // last edit 24.Dec.2016   /klatoo  created
+//           27.Dec.2016   /klatoo added additional TimerClock24::setup variant
 //
 
 // helper classes fro the RTC lib:
@@ -212,6 +213,13 @@ void TimerClock24h::setup(DateTime dtStart, DateTime dtEnd)
 	_dtEnd = dtEnd;
 }
 
+void TimerClock24h::setup(uint8_t startHour, uint8_t startMin, uint8_t startSec, int8_t endHour, uint8_t endMin, uint8_t endSec)
+{
+	_dtStart = DateTime(0, 0, 0, startHour, startMin, startSec);
+	_dtEnd = DateTime(0, 0, 0, endHour, endMin, endSec);
+}
+
+void 
 
 bool TimerClock24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNow)
 {
