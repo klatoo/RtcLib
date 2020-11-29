@@ -1,8 +1,8 @@
 // RtcLibHelper.cpp
 //
-// last edit 24.Dec.2016   /klatoo  created
-//           27.Dec.2016   /klatoo added additional TimerClock24::setup variant
-//
+// last edit 24.Dec.2016 /klatoo - created
+//           27.Dec.2016 /klatoo - added additional TimerClock24::setup variant
+//           28.Nov.2020 /klatto - some refactoring
 
 // helper classes fro the RTC lib:
 // DateTime, TimeSpan, TimerClock
@@ -203,28 +203,28 @@ TimerClock24h::TimerClock24h()
 {
 	// set to a default time to avoid any issues if setup() was not called
 
-	_dtStart = DateTime(0, 0, 0, 19, 0, 0);
-	_dtEnd = DateTime(0, 0, 0, 20, 0, 0);
+	_start = DateTime(0, 0, 0, 19, 0, 0);
+	_end = DateTime(0, 0, 0, 20, 0, 0);
 }
 
-void TimerClock24h::setup(DateTime dtStart, DateTime dtEnd)
+void TimerClock24h::setup(DateTime start, DateTime end)
 {
-	_dtStart = dtStart;
-	_dtEnd = dtEnd;
+	_start = start;
+	_end = end;
 }
 
 void TimerClock24h::setup(uint8_t startHour, uint8_t startMin, uint8_t startSec, int8_t endHour, uint8_t endMin, uint8_t endSec)
 {
-	_dtStart = DateTime(0, 0, 0, startHour, startMin, startSec);
-	_dtEnd = DateTime(0, 0, 0, endHour, endMin, endSec);
+	_start = DateTime(0, 0, 0, startHour, startMin, startSec);
+	_end = DateTime(0, 0, 0, endHour, endMin, endSec);
 }
 
 
-bool TimerClock24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNow)
+bool TimerClock24h::CheckInRange(DateTime start, DateTime end, DateTime timeToCheck)
 {
-	if (dtNow.secondstime() >= dtStart.secondstime())
+	if (timeToCheck.secondstime() >= start.secondstime())
 	{
-		if (dtNow.secondstime() <= dtEnd.secondstime())
+		if (timeToCheck.secondstime() <= end.secondstime())
 		{
 			return true;
 		}
@@ -232,24 +232,24 @@ bool TimerClock24h::CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNo
 	return false;
 }
 
-bool TimerClock24h::IsOn(DateTime dtNow)
+bool TimerClock24h::IsOn(DateTime timeToCheck)
 {
 	// if end is next day, i.e. crosses 24:00 hrs mark
-	if (_dtStart.hour() > _dtEnd.hour())
+	if (_start.hour() > _end.hour())
 	{
 		// calculate from 0:00 to end
 
-		if (CheckInRange(DateTime(dtNow.year(), dtNow.month(), dtNow.day(), 0, 0, 0),
-			DateTime(dtNow.year(), dtNow.month(), dtNow.day(), _dtEnd.hour(), _dtEnd.minute(), _dtEnd.second()),
-			dtNow)
+		if (CheckInRange(DateTime(timeToCheck.year(), timeToCheck.month(), timeToCheck.day(), 0, 0, 0),
+			DateTime(timeToCheck.year(), timeToCheck.month(), timeToCheck.day(), _end.hour(), _end.minute(), _end.second()),
+			timeToCheck)
 			)
 			return true;
 
 		// calculate from start to 24:00
 
-		if (CheckInRange(DateTime(dtNow.year(), dtNow.month(), dtNow.day(), _dtStart.hour(), _dtStart.minute(), _dtStart.second()),
-			DateTime(dtNow.year(), dtNow.month(), dtNow.day(), 24, 0, 0),
-			dtNow)
+		if (CheckInRange(DateTime(timeToCheck.year(), timeToCheck.month(), timeToCheck.day(), _start.hour(), _start.minute(), _start.second()),
+			DateTime(timeToCheck.year(), timeToCheck.month(), timeToCheck.day(), 24, 0, 0),
+			timeToCheck)
 			)
 			return true;
 
@@ -259,9 +259,9 @@ bool TimerClock24h::IsOn(DateTime dtNow)
 	{
 		// calculate from start to end
 
-		if (CheckInRange(DateTime(dtNow.year(), dtNow.month(), dtNow.day(), _dtStart.hour(), _dtStart.minute(), _dtStart.second()),
-			DateTime(dtNow.year(), dtNow.month(), dtNow.day(), _dtEnd.hour(), _dtEnd.minute(), _dtEnd.second()),
-			dtNow)
+		if (CheckInRange(DateTime(timeToCheck.year(), timeToCheck.month(), timeToCheck.day(), _start.hour(), _start.minute(), _start.second()),
+			DateTime(timeToCheck.year(), timeToCheck.month(), timeToCheck.day(), _end.hour(), _end.minute(), _end.second()),
+			timeToCheck)
 			)
 			return true;
 	}

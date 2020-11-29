@@ -2,10 +2,15 @@
 // 
 // last edit 24.Dec.2016 /klatoo  - created
 //           26.Dec.2016 /klatoo  - moved some #defines to TimeSpan::xx  static const
+//           28.Nov.2020 /klatto - added info where the original code came form
+//                                 (was before only in readme.md), some refactoring
 
-// helper classes fro the RTC lib:
+// helper classes for RtcLib:
 // DateTime, TimeSpan, TimerClock
-//
+
+// DateTime and TimeSpan are derived from the adafruit/RTClib
+// and TimerClock24h was added by me
+
 
 #ifndef RTCLIBHELPER_H
 #define RTCLIBHELPER_H
@@ -73,17 +78,17 @@ protected:
 class TimerClock24h
 {
 private:
-	DateTime _dtStart, _dtEnd;
+	DateTime _start, _end;
 	
 
 public:
 	TimerClock24h();
 	void setup(uint8_t startHour, uint8_t startMin, uint8_t startSec, int8_t endHour, uint8_t endMin, uint8_t endSec);
-	void setup(DateTime dtStart, DateTime dtEnd);
-	bool IsOn(DateTime dtNow);
+	void setup(DateTime start, DateTime end);
+	bool IsOn(DateTime timeToCheck);
 
 protected:
-	bool CheckInRange(DateTime dtStart, DateTime dtEnd, DateTime dtNow);
+	bool CheckInRange(DateTime start, DateTime end, DateTime timeToCheck);
 };
 
 
